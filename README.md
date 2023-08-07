@@ -1,3 +1,5 @@
+[![Video Demo](https://img.youtube.com/vi/f_HPtZaYhPM/0.jpg)](https://youtu.be/f_HPtZaYhPM)
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
