@@ -1,17 +1,20 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import Animated, { FadeInLeft, FadeInDown } from 'react-native-reanimated';
 
-const ItemDetailScreen = ({ route, navigation }) => { // Add 'navigation' to the destructured props
-  const { itemId } = route.params;
+const ItemDetailScreen = ({ route, navigation }) => {
+  const { item } = route.params;
 
   return (
     <View style={{ padding: 16 }}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Text>Go Back</Text>
       </TouchableOpacity>
-      <Text>Item Detail Screen</Text>
-      <Text>Item ID: {itemId}</Text>
-      {/* Display the rest of the item details here */}
+      <Animated.Image sharedTransitionTag={`img_${item.photo}`} source={item.photo} style={{ width: '100%', height: 200 }} />
+
+      <Animated.Text entering={FadeInLeft.duration(400).delay(500)}>Item Detail Screen</Animated.Text>
+      <Animated.Text entering={FadeInDown.duration(400).delay(600)}>Item ID: {item.id}</Animated.Text>
+
     </View>
   );
 };

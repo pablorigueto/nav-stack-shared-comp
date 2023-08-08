@@ -1,45 +1,39 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import Animated, { SharedTransition, FadeInLeft, FadeInDown, withSpring } from 'react-native-reanimated';
 
 const dataA = [
-  { id: '1', title: 'Item 1' },
-  { id: '2', title: 'Item 2' },
-  { id: '3', title: 'Item 3' },
-  { id: '4', title: 'Item 4' },
-  { id: '5', title: 'Item 5' },
-  { id: '6', title: 'Item 6' },
-  { id: '7', title: 'Item 7' },
-  { id: '8', title: 'Item 8' },
-  { id: '9', title: 'Item 9' },
-  { id: '10', title: 'Item 10' },
-  // Add more items here
+  { id: '1', title: 'Item 1', photo: require('../assets/foto1.jpeg') },
+  { id: '2', title: 'Item 2', photo: require('../assets/foto2.jpeg') },
+  { id: '3', title: 'Item 2', photo: require('../assets/foto5.jpeg') },
+  // ... add more items
 ];
 
 const dataB = [
-  { id: '11', title: 'Item 11' },
-  { id: '21', title: 'Item 21' },
-  { id: '31', title: 'Item 31' },
-  { id: '41', title: 'Item 41' },
-  { id: '51', title: 'Item 51' },
-  { id: '61', title: 'Item 61' },
-  { id: '71', title: 'Item 71' },
-  { id: '81', title: 'Item 81' },
-  { id: '91', title: 'Item 91' },
-  { id: '101', title: 'Item 101' },
-  // Add more items here
+  { id: '10', title: 'Item 10', photo: require('../assets/foto3.jpeg') },
+  { id: '11', title: 'Item 11', photo: require('../assets/foto4.png') },
+  { id: '12', title: 'Item 12', photo: require('../assets/foto6.jpeg') },
+  // ... add more items
 ];
 
+const transition = SharedTransition.custom((values) => {
+  'worklet';
+  return {
+    height: withSpring(values.targetHeight),
+    width: withSpring(values.targetWidth),
+  };
+});
+
 const FlatListScreen = ({ navigation }) => {
-  console.log('navigation');
-  console.log(navigation);
   const renderItem = ({ item }) => (
-    console.log('item...:'),
-    console.log(item),
     <TouchableOpacity
-      onPress={() => navigation.navigate('ItemDetail', { itemId: item.id })}
+      onPress={() => navigation.navigate('ItemDetail', { item })}
     >
       <View style={{ padding: 16 }}>
-        <Text>{item.title}</Text>
+          <Animated.Image
+            sharedTransitionTag={`img_${item.photo}`}
+            source={item.photo} style={{ width: 200, height: 200 }} />
+          <Text>{item.title}</Text>
       </View>
     </TouchableOpacity>
   );

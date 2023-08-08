@@ -10,6 +10,7 @@ export default function StackRoutes() {
         <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='FlatlistScreenHot'>
             <Stack.Screen name="FlatList" component={FlatListScreen} />
             <Stack.Screen name="ItemDetail" component={ItemDetailScreen} />
+            {/* <Stack.Screen name="ItemDetail" component={ItemDetailScreen} options={{ headerShown: false, presentation: 'push', animation: 'fade' }} /> */}
         </Stack.Navigator>
     )
 }
